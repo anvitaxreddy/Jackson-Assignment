@@ -1,3 +1,4 @@
+// User understands the need for serialization and deserialization in an application
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
