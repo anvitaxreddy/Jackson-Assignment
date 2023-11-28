@@ -1,4 +1,4 @@
-// User understands the need for a library like Jackson to deserialize JSON
+// Activity #1 : Using Jackson for JSON serialization and deserialization to transfer user data between different parts of an application.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
