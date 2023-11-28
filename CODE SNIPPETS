@@ -1,0 +1,57 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+
+// Define a class representing user data
+class UserData {
+    private String username;
+    private String email;
+    private int age;
+
+    // Constructors, getters, setters, etc.
+
+    @Override
+    public String toString() {
+        return "UserData{" +
+                "username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
+
+public class SerializationDeserializationExample {
+
+    public static void main(String[] args) {
+        // Create an instance of ObjectMapper (Jackson's main class for data-binding)
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        // Sample user data
+        UserData userData = new UserData();
+        userData.setUsername("john_doe");
+        userData.setEmail("john@example.com");
+        userData.setAge(30);
+
+        // Serialize the user data to JSON string
+        try {
+            String jsonString = objectMapper.writeValueAsString(userData);
+            System.out.println("Serialized Data:");
+            System.out.println(jsonString);
+
+            // Simulate sending the JSON string over the network or between parts of the application
+
+            // Simulate receiving the JSON string
+            String receivedJsonString = jsonString;
+
+            // Deserialize the JSON string back to UserData object
+            UserData deserializedData = objectMapper.readValue(receivedJsonString, UserData.class);
+
+            // Now you can work with the deserialized data
+            System.out.println("\nDeserialized Data:");
+            System.out.println(deserializedData);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
