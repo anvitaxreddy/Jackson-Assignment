@@ -1,0 +1,19 @@
+// User understands the need for a library like Jackson to deserialize JSON
+
+
+public class ApiConsumer {
+    public static void main(String[] args) {
+        String jsonResponse = "{\"username\":\"JohnDoe\",\"age\":25}";
+
+        try {
+            // Deserialize JSON response using Jackson
+            ObjectMapper objectMapper = new ObjectMapper();
+            User user = objectMapper.readValue(jsonResponse, User.class);
+
+            // Use the deserialized object
+            System.out.println("Username: " + user.getUsername() + ", Age: " + user.getAge());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
