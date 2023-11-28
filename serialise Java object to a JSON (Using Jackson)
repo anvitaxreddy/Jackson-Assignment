@@ -1,0 +1,21 @@
+// Activity : Saving the data to JASON file
+
+// Serialize Java object to a JSON file using Jackson
+
+public class JsonSerializationExample {
+    public static void main(String[] args) {
+        // 1. Create a Java object to be serialized
+        Student student = new Student();
+        
+        try {
+            // 2. Create an ObjectMapper instance from Jackson library
+            ObjectMapper objectMapper = new ObjectMapper();
+            
+            // 3. Serialize Java object to a JSON file
+            objectMapper.writeValue(new File("student.json"), student);
+        } catch (Exception e) {
+            // 4. Handle exceptions, such as IOException or JsonProcessingException
+            e.printStackTrace();
+        }
+    }
+}
