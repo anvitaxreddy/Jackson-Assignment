@@ -1,0 +1,35 @@
+// Expected Learning Outcome
+// User understands the need for @JsonProperty annotation
+
+// Activity or Practical Usecase
+// Practical Usecase: Customizing JSON Field Names
+// In scenarios where the Java field names differ from the JSON field names, @JsonProperty annotation can be used to specify the mapping.
+
+// Demo Idea or Code Snippet
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+class Person {
+    @JsonProperty("full_name")
+    private String fullName;
+
+    // Getters and Setters
+}
+
+public class JsonPropertyExample {
+    public static void main(String[] args) {
+        // Serialization with @JsonProperty annotation
+        Person person = new Person();
+        person.setFullName("John Doe");
+
+        try {
+            // Serialize Java object to JSON with Jackson
+            ObjectMapper objectMapper = new ObjectMapper();
+            String json = objectMapper.writeValueAsString(person);
+
+            // Display the serialized JSON
+            System.out.println("Serialized JSON: " + json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
