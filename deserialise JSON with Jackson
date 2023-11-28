@@ -1,1 +1,21 @@
+// User should be able to deserialize JSON with Jackson
+
+// Activity : Processing JSON Data from External Source
+
+public class JsonDeserializationExample {
+    public static void main(String[] args) {
+        String jsonProduct = "{\"name\":\"Laptop\",\"price\":999.99}";
+
+        try {
+            // Deserialize JSON response using Jackson
+            ObjectMapper objectMapper = new ObjectMapper();
+            Product laptop = objectMapper.readValue(jsonProduct, Product.class);
+
+            // Use the deserialized object
+            System.out.println("Product: " + laptop.getName() + ", Price: $" + laptop.getPrice());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
 
