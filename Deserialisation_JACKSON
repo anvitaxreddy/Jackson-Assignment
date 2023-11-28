@@ -1,19 +1,54 @@
 // User understands the need for a library like Jackson to deserialize JSON
 
-// Practical Usecase: Consuming API Responses
-public class ApiConsumer {
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+class User {
+    private String username;
+    private int age;
+
+    // Constructors, Getters, Setters
+}
+
+public class UserTransfer {
     public static void main(String[] args) {
-        String jsonResponse = "{\"username\":\"JohnDoe\",\"age\":25}";
+        // Create a User object
+        User user = new User();
+        user.setUsername("JohnDoe");
+        user.setAge(25);
 
+        // Serialize User object to JSON
+        String jsonString = serializeToJson(user);
+        System.out.println("Serialized JSON: " + jsonString);
+
+        // Deserialize JSON to User object
+        User deserializedUser = deserializeFromJson(jsonString, User.class);
+
+        // Use the deserialized User object
+        System.out.println("Deserialized User: " +
+                "Username - " + deserializedUser.getUsername() +
+                ", Age - " + deserializedUser.getAge());
+    }
+
+    // Method to serialize Java object to JSON
+    private static String serializeToJson(Object object) {
         try {
-            // Deserialize JSON response using Jackson
             ObjectMapper objectMapper = new ObjectMapper();
-            User user = objectMapper.readValue(jsonResponse, User.class);
-
-            // Use the deserialized object
-            System.out.println("Username: " + user.getUsername() + ", Age: " + user.getAge());
+            return objectMapper.writeValueAsString(object);
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
+        }
+    }
+
+    // Method to deserialize JSON to Java object
+    private static <T> T deserializeFromJson(String jsonString, Class<T> valueType) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.readValue(jsonString, valueType);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
+
